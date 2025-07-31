@@ -159,11 +159,6 @@
 	/* 	vin-supply = <&dc_12v>; */
         /* }; */
 
-	ap6256_wifi: ap6256_wifi {
-                compatible = "brcm,brcm,bcm4329-fmac";
-                gpio_wl_reg_on = <&gpio 67 GPIO_ACTIVE_HIGH>;
-        };
-
 
 };
 
@@ -675,6 +670,14 @@
 	spacemit,rx_tuning_limit = <50>;
 	spacemit,sdh-freq = <375000000>;
 	status = "okay";
+
+	brcmf: ap6256_wifi@1 {
+                compatible = "brcm,brcm,bcm4329-fmac";
+		interrupt-parent = <&gpio>;
+		interrupts = <67 GPIO_ACTIVE_HIGH>;
+		interrupt-names = "host-wake";
+        };
+
 };
 
 /* eMMC */
