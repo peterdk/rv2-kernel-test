@@ -1,0 +1,54 @@
+# SPDX-License-Identifier: GPL-2.0
+# ==========================================================================
+# Installing dtb files
+#
+# Installs all dtb files listed in $(dtb-y) either in the
+# INSTALL_DTBS_PATH directory or the default location:
+#
+#   $INSTALL_PATH/dtbs/$KERNELRELEASE
+# ==========================================================================
+
+PHONY := __dtbs_install
+__dtbs_install:
+
+include include/config/auto.conf
+include $(srctree)/scripts/Kbuild.include
+
+dst := $(INSTALL_DTBS_PATH)
+
+quiet_cmd_dtb_install = INSTALL $@
+      cmd_dtb_install = install -D -m 0644 $< $@
+
+$(dst)/%: $(obj)/%
+	$(call cmd,dtb_install)
+
+dtbs := $(patsubst $(obj)/%,%,$(call read-file, $(obj)/dtbs-list))
+
+ifdef CONFIG_ARCH_WANT_FLAT_DTB_INSTALL
+
+define gen_install_rules
+$(dst)/%: $(obj)/$(1)%
+	$$(call cmd,dtb_install)
+endef
+
+$(foreach d, $(sort $(dir $(dtbs))), $(eval $(call gen_install_rules,$(d))))
+
+# Very convoluted way to flatten all the device tree
+# directories, but keep the "/overlay/" directory
+
+# topmost directory (ie: from rockchip/overlay/rk322x-emmc.dtbo extracts rockchip)
+topmost_dir = $(firstword $(subst /, ,$(dtbs)))
+# collect dtbs entries which starts with "$topmost_dir/overlay/", then remove "$topmost_dir"
+dtbs_overlays = $(subst $(topmost_dir)/,,$(filter $(topmost_dir)/overlay/%, $(dtbs)))
+# collect the non-overlay dtbs
+dtbs_regular = $(filter-out $(topmost_dir)/overlay/%, $(dtbs))
+# compose the dtbs variable flattening all the non-overlays entries
+# and appending the overlays entries
+dtbs := $(notdir $(dtbs_regular)) $(dtbs_overlays)
+
+endif # CONFIG_ARCH_WANT_FLAT_DTB_INSTALL
+
+__dtbs_install: $(addprefix $(dst)/, $(dtbs))
+	@:
+
+.PHONY: $(PHONY)
