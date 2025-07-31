@@ -652,7 +652,9 @@
 	no-sd;
 	keep-power-in-suspend;
 	/* bcmdhd use private oob solution rather than dat1/standard wakeup */
-	/delete-property/ enable-sdio-wakeup;
+	/* /delete-property/ enable-sdio-wakeup; */
+	cap-power-off-card;
+	wifi-host;
 	spacemit,sdh-host-caps-disable = <(
 			MMC_CAP_UHS_DDR50 |
 			MMC_CAP_NEEDS_POLL
@@ -671,7 +673,7 @@
 	spacemit,sdh-freq = <375000000>;
 	status = "okay";
 
-	brcmf: ap6256_wifi@1 {
+	brcmf: bcrmf@1 {
                 compatible = "brcm,bcm4329-fmac";
 		interrupt-parent = <&gpio>;
 		interrupts = <67 0>;
