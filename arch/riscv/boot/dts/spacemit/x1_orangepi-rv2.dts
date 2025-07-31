@@ -673,8 +673,8 @@
 
 	brcmf: ap6256_wifi@1 {
                 compatible = "brcm,bcm4329-fmac";
-		interrupt-parent = <&gpio67>;
-/*		interrupts = <67 GPIO_ACTIVE_HIGH>;
+/*		interrupt-parent = <&gpio>;
+		interrupts = <67 GPIO_ACTIVE_HIGH>;
 		interrupt-names = "host-wake"; */
         };
 
