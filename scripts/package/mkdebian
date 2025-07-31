@@ -239,10 +239,8 @@ cat <<EOF >> debian/control
 
 Package: linux-headers-${KERNELRELEASE}
 Architecture: $debarch
-Build-Profiles: <!pkg.${sourcename}.nokernelheaders>
 Description: Linux kernel headers for ${KERNELRELEASE} on $debarch
  This package provides kernel header files for ${KERNELRELEASE} on $debarch
- .
  This is useful for people who need to build external modules
 EOF
 fi
