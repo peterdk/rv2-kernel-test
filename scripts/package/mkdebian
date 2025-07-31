@@ -246,7 +246,6 @@ Description: Linux kernel headers for ${KERNELRELEASE} on $debarch
  This is useful for people who need to build external modules
 EOF
 fi
-fi
 
 if is_enabled CONFIG_DEBUG_INFO; then
 cat <<EOF >> debian/control
