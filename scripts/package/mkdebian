@@ -220,7 +220,6 @@ Architecture: $debarch
 Description: Linux kernel, version ${KERNELRELEASE}
  This package contains the Linux kernel, modules and corresponding other
  files, version: ${KERNELRELEASE}.
-Depends: spacemit-flash-dtbs
 EOF
 
 if [ "${SRCARCH}" != um ]; then
@@ -236,7 +235,6 @@ Description: Linux support headers for userspace development
 Multi-Arch: same
 EOF
 
-if is_enabled CONFIG_MODULES; then
 cat <<EOF >> debian/control
 
 Package: linux-headers-${KERNELRELEASE}
