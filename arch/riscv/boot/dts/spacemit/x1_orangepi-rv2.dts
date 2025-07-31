@@ -159,6 +159,12 @@
 	/* 	vin-supply = <&dc_12v>; */
         /* }; */
 
+	ap6256_wifi: ap6256_wifi {
+                compatible = "brcm,brcm,bcm4329-fmac";
+                gpio_wl_reg_on = <&gpio 67 GPIO_ACTIVE_HIGH>;
+        };
+
+
 };
 
 &uart0 {
