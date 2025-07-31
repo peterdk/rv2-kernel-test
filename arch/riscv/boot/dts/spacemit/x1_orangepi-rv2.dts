@@ -651,6 +651,7 @@
 	no-mmc;
 	no-sd;
 	keep-power-in-suspend;
+	vmmc-supply = <&gpio 67 0>;
 	/* bcmdhd use private oob solution rather than dat1/standard wakeup */
 	/delete-property/ enable-sdio-wakeup; 
 	spacemit,sdh-host-caps-disable = <(
