@@ -159,6 +159,15 @@
 	/* 	vin-supply = <&dc_12v>; */
         /* }; */
 
+  	wlreg_on: fixedregulator@100 {
+               compatible = "regulator-fixed";
+               regulator-min-microvolt = ;
+               regulator-max-microvolt = ;
+               regulator-name = "wlreg_on";
+               gpio = <&gpio 67 0>;
+               startup-delay-us = ;
+               enable-active-high;
+          };
 
 };
 
@@ -640,15 +649,7 @@
 	spacemit,sdh-freq = <204800000>;
 	status = "okay";
 };
-    wlreg_on: fixedregulator@100 {
-               compatible = "regulator-fixed";
-               regulator-min-microvolt = ;
-               regulator-max-microvolt = ;
-               regulator-name = "wlreg_on";
-               gpio = <&gpio 67 0>;
-               startup-delay-us = ;
-               enable-active-high;
-          };
+  
 /* SDIO */
 &sdhci1 {
 	pinctrl-names = "default";
