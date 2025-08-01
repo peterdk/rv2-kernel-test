@@ -671,6 +671,7 @@
 	vqmmc-supply = <&dcdc_3>;
 	no-mmc;
 	no-sd;
+	vmmc-supply = <&gpio 67 GPIO_ACTIVE_HIGH>;
 	keep-power-in-suspend;
 	/* bcmdhd use private oob solution rather than dat1/standard wakeup */
 	/delete-property/ enable-sdio-wakeup; 
@@ -692,9 +693,8 @@
 	spacemit,sdh-freq = <375000000>;
 	status = "okay";
 
-	wifi@1 {
+	brcmf: bcrmf@1 {
                 compatible = "brcm,bcm4329-fmac";
-                reg = <1>;
 		interrupt-parent = <&gpio>;
 		interrupts = <66 GPIO_ACTIVE_HIGH>;
 		interrupt-names = "host-wake"; 
