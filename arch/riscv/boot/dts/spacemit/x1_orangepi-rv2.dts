@@ -135,6 +135,27 @@
 		vin-supply = <&dc_12v>;
 	};
 
+	rf_pwrseq: rf-pwrseq {
+		compatible = "spacemit,rf-pwrseq";
+		//vdd-supply = <&ldo_7>;
+		//vdd_voltage = <3300000>;
+		io-supply = <&dcdc_3>;
+		io_voltage = <1800000>;
+		pwr-gpios  = <&gpio 67 0>;
+		status = "okay";
+
+		wlan_pwrseq: wlan-pwrseq {
+			compatible = "spacemit,wlan-pwrseq";
+			regon-gpios = <&gpio 67 GPIO_ACTIVE_HIGH>;
+			hostwake-gpios = <&gpio 66 GPIO_ACTIVE_HIGH>;
+		};
+
+		bt_pwrseq: bt-pwrseq {
+			compatible = "spacemit,bt-pwrseq";
+			reset-gpios     = <&gpio 63 0>;
+		};
+	};
+	
 	leds {
 		compatible = "gpio-leds";
 
