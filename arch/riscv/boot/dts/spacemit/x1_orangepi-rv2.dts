@@ -7,7 +7,7 @@
 #include "k1-x_pinctrl.dtsi"
 #include "k1-x_opp_table.dtsi"
 #include "k1-x_thermal_cooling.dtsi"
-#include <linux/gpio.h>
+#include <dt-bindings/gpio/gpio.h>
 
 / {
 	model = "ky x1 orangepi-rv2 board";
