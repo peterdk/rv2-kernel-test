@@ -2,12 +2,12 @@
 /* Copyright (c) 2023 Ky, Inc */
 
 /dts-v1/;
-
 #include "k1-x.dtsi"
 #include "k1-x-efuse.dtsi"
 #include "k1-x_pinctrl.dtsi"
 #include "k1-x_opp_table.dtsi"
 #include "k1-x_thermal_cooling.dtsi"
+#include <drivers/gpio.h>
 
 / {
 	model = "ky x1 orangepi-rv2 board";
@@ -146,8 +146,8 @@
 
 		wlan_pwrseq: wlan-pwrseq {
 			compatible = "spacemit,wlan-pwrseq";
-			regon-gpios = <&gpio 67 1>;
-			hostwake-gpios = <&gpio 66 1>;
+			regon-gpios = <&gpio 67 GPIO_ACTIVE_HIGH>;
+			hostwake-gpios = <&gpio 66 GPIO_ACTIVE_HIGH>;
 		};
 
 		bt_pwrseq: bt-pwrseq {
@@ -692,10 +692,11 @@
 	spacemit,sdh-freq = <375000000>;
 	status = "okay";
 
-	brcmf: bcrmf@1 {
+	wifi@1 {
                 compatible = "brcm,bcm4329-fmac";
+                reg = <1>;
 		interrupt-parent = <&gpio>;
-		interrupts = <67 1>;
+		interrupts = <66 GPIO_ACTIVE_HIGH>;
 		interrupt-names = "host-wake"; 
         };
 
