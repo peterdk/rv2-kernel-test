@@ -640,7 +640,15 @@
 	spacemit,sdh-freq = <204800000>;
 	status = "okay";
 };
-
+    wlreg_on: fixedregulator@100 {
+               compatible = "regulator-fixed";
+               regulator-min-microvolt = ;
+               regulator-max-microvolt = ;
+               regulator-name = "wlreg_on";
+               gpio = <&gpio 67 0>;
+               startup-delay-us = ;
+               enable-active-high;
+          };
 /* SDIO */
 &sdhci1 {
 	pinctrl-names = "default";
@@ -651,7 +659,7 @@
 	no-mmc;
 	no-sd;
 	keep-power-in-suspend;
-	vmmc-supply = <&gpio 67 0>;
+        vmmc-supply = <&wlreg_on>;
 	/* bcmdhd use private oob solution rather than dat1/standard wakeup */
 	/delete-property/ enable-sdio-wakeup; 
 	spacemit,sdh-host-caps-disable = <(
