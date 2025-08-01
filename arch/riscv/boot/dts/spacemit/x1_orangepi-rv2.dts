@@ -695,7 +695,7 @@
 	brcmf: bcrmf@1 {
                 compatible = "brcm,bcm4329-fmac";
 		interrupt-parent = <&gpio>;
-		interrupts = <67 0>; 
+		interrupts = <67 1>;
 		interrupt-names = "host-wake"; 
         };
 
