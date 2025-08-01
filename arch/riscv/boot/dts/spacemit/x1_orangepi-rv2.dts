@@ -159,14 +159,6 @@
 	/* 	vin-supply = <&dc_12v>; */
         /* }; */
 
-  	wlreg_on: fixedregulator@100 {
-               compatible = "regulator-fixed";
-               regulator-min-microvolt = <3300000>;
-               regulator-max-microvolt = <3300000>;
-               regulator-name = "wlreg_on";
-               gpio = <&gpio 67 0>;               
-               enable-active-high;
-          };
 
 };
 
@@ -659,7 +651,6 @@
 	no-mmc;
 	no-sd;
 	keep-power-in-suspend;
-        vmmc-supply = <&wlreg_on>;
 	/* bcmdhd use private oob solution rather than dat1/standard wakeup */
 	/delete-property/ enable-sdio-wakeup; 
 	spacemit,sdh-host-caps-disable = <(
@@ -683,7 +674,7 @@
 	brcmf: bcrmf@1 {
                 compatible = "brcm,bcm4329-fmac";
 		interrupt-parent = <&gpio>;
-		interrupts = <66 0>;
+		interrupts = <67 1>; /* 66 0 */
 		interrupt-names = "host-wake"; 
         };
 
