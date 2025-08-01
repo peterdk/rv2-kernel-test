@@ -161,8 +161,8 @@
 
   	wlreg_on: fixedregulator@100 {
                compatible = "regulator-fixed";
-               regulator-min-microvolt =;
-               regulator-max-microvolt =;
+               regulator-min-microvolt = <3300000>;
+               regulator-max-microvolt = <3300000>;
                regulator-name = "wlreg_on";
                gpio = <&gpio 67 0>;
                startup-delay-us =;
